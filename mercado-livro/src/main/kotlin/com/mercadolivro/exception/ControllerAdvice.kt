@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest
 class ControllerAdvice {
 
     @ExceptionHandler(NotFoundException::class)
-    fun handleException(exception: NotFoundException, request: WebRequest): ResponseEntity<ErrorResponse> {
+    fun handleNotFoundException(exception: NotFoundException, request: WebRequest): ResponseEntity<ErrorResponse> {
         val error = ErrorResponse(
             httpCode = HttpStatus.NOT_FOUND.value(),
             message = exception.message,
@@ -20,5 +20,17 @@ class ControllerAdvice {
         )
 
         return ResponseEntity(error, HttpStatus.NOT_FOUND)
+    }
+
+    @ExceptionHandler(BadRequestException::class)
+    fun handleBadRequestException(exception: BadRequestException, request: WebRequest): ResponseEntity<ErrorResponse> {
+        val error = ErrorResponse(
+            httpCode = HttpStatus.BAD_REQUEST.value(),
+            message = exception.message,
+            internalCode = exception.errorCode,
+            errors = null
+        )
+
+        return ResponseEntity(error, HttpStatus.BAD_REQUEST)
     }
 }
