@@ -53,7 +53,7 @@ class BookController(
         this.bookService.delete(id)
     }
 
-    @GetMapping("/{active}")
+    @GetMapping("/active/{active}")
     fun getActives(@PageableDefault(page = 0, size = 10) pageable: Pageable):Page<BookResponse>{
         return bookService.getActives(pageable).map { it.toResponse() }
     }
