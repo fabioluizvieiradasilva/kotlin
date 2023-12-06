@@ -2,6 +2,7 @@ package com.mercadolivro.extension
 
 import com.mercadolivro.controller.request.PostBookRequest
 import com.mercadolivro.controller.request.PostCustomerRequest
+import com.mercadolivro.controller.request.PutBookRequest
 import com.mercadolivro.controller.request.PutCustomerRequest
 import com.mercadolivro.controller.response.BookResponse
 import com.mercadolivro.controller.response.CustomerResponse
@@ -24,6 +25,16 @@ fun PostBookRequest.toBookModel(customer: CustomerModel): BookModel{
         status = BookStatus.ATIVO,
         price = this.price,
         customer = customer
+    )
+}
+
+fun PutBookRequest.toBookModel(bookModel: BookModel): BookModel{
+    return BookModel(
+        id = bookModel.id,
+        name = this.name?:bookModel.name,
+        price = this.price?:bookModel.price,
+        status = bookModel.status,
+        customer = bookModel.customer
     )
 }
 
