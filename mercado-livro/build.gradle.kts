@@ -11,6 +11,8 @@ plugins {
 group = "com.mercadolivro"
 version = "0.0.1-SNAPSHOT"
 
+val springDocVersion = "2.3.0"
+
 java {
 	sourceCompatibility = JavaVersion.VERSION_17
 }
@@ -25,6 +27,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springDocVersion")
+	//implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")
+
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.flywaydb:flyway-mysql")
 
