@@ -63,6 +63,18 @@ class BookService(
         return this.bookRepository.findByStatus(BookStatus.ATIVO, pageable)
     }
 
+    fun getAllById(bookIds: Set<Int>): List<BookModel> {
+        return bookRepository.findAllById(bookIds).toList()
+    }
+
+    fun purchase(books: MutableList<BookModel>) {
+        books.map {
+            it.status = BookStatus.VENDIDO
+        }
+
+        this.bookRepository.saveAll(books)
+    }
+
 
 }
 
